@@ -46,6 +46,17 @@ public class GlucosioApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        String lang = "it_IT";// Get the language code from SharedPreferences;
+        if (lang != null){
+            Resources res = getResources();
+            // Change locale settings in the app.
+            DisplayMetrics dm = res.getDisplayMetrics();
+            android.content.res.Configuration conf = res.getConfiguration();
+            conf.locale = new Locale(lang.toLowerCase());
+            Log.e("locale", conf.locale.toString());
+            res.updateConfiguration(conf, dm);
+        }
+
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/lato.ttf")
                 .setFontAttrId(R.attr.fontPath)
